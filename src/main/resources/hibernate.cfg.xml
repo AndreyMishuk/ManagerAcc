@@ -43,8 +43,14 @@ Contributor(s):
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/managerAcc?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/managerAcc</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">andrey123ariman</property>
+    <property name="show_sql">true</property>
+    
+    <mapping class="net.service.manageracc.entity.Employees"/>
+    <mapping class="net.service.manageracc.entity.Position"/>   
+    <mapping class="net.service.manageracc.entity.Objects"/>   
+    
   </session-factory>
 </hibernate-configuration>

@@ -7,13 +7,23 @@ import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
     
-    private static SessionFactory sessionFactory;
+    private static SessionFactory sessionFactory = null;
     
-    private HibernateUtil() {
-        sessionFactory = new Configuration().configure().buildSessionFactory();
+    static {
+        try {
+            sessionFactory = new Configuration().configure().buildSessionFactory();
+        } catch (Throwable e) {
+            System.out.println("Initial SessionFactory created failed" + e);
+            throw new ExceptionInInitializerError(e);
+        }
+        
     }
     
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
+    }
+    
+    public static void shutdown() {
+        getSessionFactory().close();
     }
 }

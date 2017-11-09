@@ -1,7 +1,6 @@
 
 package net.service.manageracc.service;
 
-import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 import net.service.manageracc.util.HibernateUtil;
@@ -9,7 +8,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import net.service.manageracc.dao.IGenericDao;
 
-public class GenericService<T extends Serializable> implements IGenericDao<T>{
+public class GenericService<T> implements IGenericDao<T>{
 
     private final Class<T> type;
     
@@ -69,8 +68,8 @@ public class GenericService<T extends Serializable> implements IGenericDao<T>{
         
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-//            value = session.get(T.class, id);
-        } catch (Exception e) {
+            value = session.get(type, id);
+        } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
             if(session != null && session.isOpen())
@@ -87,8 +86,8 @@ public class GenericService<T extends Serializable> implements IGenericDao<T>{
         
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-            value = session.createCriteria(Serializable.class).list();
-        } catch (Exception e) {
+            value = session.createCriteria(type).list();
+        } catch (HibernateException e) {
             e.printStackTrace();
         } finally {
             if(session != null && session.isOpen())

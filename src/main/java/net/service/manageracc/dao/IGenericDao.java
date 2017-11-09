@@ -14,7 +14,7 @@ import java.util.List;
  * @author andrey
  * @param <T>
  */
-public interface IGenericDao<T extends Serializable> {
+public interface IGenericDao<T> {
     
     public void add(T entity) throws SQLException;
     
