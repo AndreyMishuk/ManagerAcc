@@ -22,8 +22,8 @@ public class Objects implements Serializable {
     @Column(name = "name")
     private String nameObject;
 
-    @Column(name = "adress")
-    private String adress;
+    @Column(name = "address")
+    private String address;
 
     @ManyToMany(mappedBy = "objectsList")
     private List<Employees> employeesList;
@@ -48,11 +48,11 @@ public class Objects implements Serializable {
     }
 
     public String getAdress() {
-        return adress;
+        return address;
     }
 
     public void setAdress(String adress) {
-        this.adress = adress;
+        this.address = adress;
     }
 
     public List<Employees> getEmployeesList() {
